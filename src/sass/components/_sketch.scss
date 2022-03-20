@@ -1,0 +1,52 @@
+@use "../abstracts/colors";
+.sketch {
+  background-color: #181818;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+.sketch-container {
+  display: -ms-grid;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+.sketch-taskbarContainer {
+  display: flex;
+}
+.sketch-taskbar {
+  background-color: #202020;
+  align-self: center;
+  display: flex;
+  gap: 1rem;
+  padding: 1.8rem;
+  justify-content: space-around;
+  flex-direction: column;
+  width: 300px;
+  height: 100%;
+}
+.sketch-form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+.sketch-inputs {
+  color: colors.$base-color;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.sketch-buttons {
+  color: colors.$base-color;
+  gap: 0.5rem;
+  display: flex;
+  flex-direction: column;
+}
+.sketch-sliderContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}

@@ -1,0 +1,7 @@
+@use "../abstracts/colors";
+@import url("https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap");
+h1 {
+  font-size: 2rem;
+  font-family: "Press Start 2P", cursive;
+  color: colors.$base-color;
+}
