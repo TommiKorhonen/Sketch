@@ -1,0 +1,56 @@
+@use "../abstracts/colors";
+.small-picker .react-colorful {
+  width: 200px;
+  height: 100px;
+  border: 2px solid colors.$base-color;
+  border-radius: 8%;
+}
+
+.custom-pointers .react-colorful__saturation-pointer {
+  width: 10px;
+  height: 10px;
+  border-radius: 3px;
+}
+
+.taskbar-Container {
+  display: flex;
+}
+.taskbar {
+  background-color: #202020;
+  align-self: center;
+  display: flex;
+  gap: 1rem;
+  padding: 1.8rem;
+  justify-content: space-around;
+  flex-direction: column;
+  width: 300px;
+  height: 100%;
+}
+.taskbar-Form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+.taskbar-Inputs {
+  color: white;
+  padding: 1rem;
+  font-weight: 600;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.3rem;
+}
+
+.taskbar-Buttons {
+  color: colors.$base-color;
+  gap: 0.5rem;
+  display: flex;
+  flex-direction: column;
+}
+.taskbar-SliderContainer {
+  color: white;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}

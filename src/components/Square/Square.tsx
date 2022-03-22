@@ -1,15 +1,16 @@
-import React from "react";
+import React, { useState } from "react";
+import { IInputValues } from "../Board/Board";
 
 interface ISquareProps {
-  isColored: boolean;
   handleMouseDown: (row: number, col: number) => void;
   handleMouseEnter: (row: number, col: number) => void;
   handleMouseUp: () => void;
+  isColored: boolean;
   col: number;
   row: number;
-  bgColor?: string;
+  nodeColor: string;
 }
-
+// style={{ backgroundColor: nodeColor }}
 const Square: React.FC<ISquareProps> = ({
   handleMouseDown,
   handleMouseEnter,
@@ -17,13 +18,17 @@ const Square: React.FC<ISquareProps> = ({
   col,
   row,
   isColored,
-  bgColor,
+  nodeColor,
 }) => {
-  const extraClass = isColored ? "colored-node" : "";
   return (
     <article
-      className={`node ${extraClass}`}
-      style={{ backgroundColor: bgColor }}
+      draggable={false}
+      className={`node `}
+      style={
+        isColored
+          ? { backgroundColor: nodeColor }
+          : { backgroundColor: "inherit" }
+      }
       onMouseDown={() => handleMouseDown(row, col)}
       onMouseEnter={() => handleMouseEnter(row, col)}
       onMouseUp={() => handleMouseUp()}

@@ -8,6 +8,11 @@ interface IBoardProps {
   handleMouseEnter: (row: number, col: number) => void;
   handleMouseUp: () => void;
   bgColor?: string;
+  values: IInputValues;
+}
+
+export interface IInputValues {
+  gridLines: number;
 }
 
 const Board: React.FC<IBoardProps> = ({
@@ -16,14 +21,23 @@ const Board: React.FC<IBoardProps> = ({
   handleMouseEnter,
   handleMouseUp,
   bgColor,
+  values,
 }) => {
   return (
-    <div>
+    <div draggable={false}>
       {board.grid.map((row, rowindex) => {
         return (
-          <div key={rowindex} className="row">
+          <div
+            key={rowindex}
+            className="row"
+            draggable={false}
+            style={{
+              backgroundColor: bgColor,
+              gridTemplateColumns: `repeat(${values.gridLines}, minmax(0, 1fr))`,
+            }}
+          >
             {row.map((node, nodeIndex) => {
-              const { row, col, isColored } = node;
+              const { row, col, isColored, nodeColor } = node;
               return (
                 <Square
                   key={nodeIndex}
@@ -33,7 +47,7 @@ const Board: React.FC<IBoardProps> = ({
                   handleMouseUp={handleMouseUp}
                   row={row}
                   col={col}
-                  bgColor={bgColor}
+                  nodeColor={nodeColor}
                 />
               );
             })}

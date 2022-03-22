@@ -1,7 +1,14 @@
 @use "../abstracts/colors";
 @import url("https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Roboto&display=swap");
 h1 {
   font-size: 2rem;
+  margin-bottom: 3rem;
   font-family: "Press Start 2P", cursive;
   color: colors.$base-color;
+}
+h3 {
+  font-size: 1.3rem;
+  // text-transform: uppercase;
+  font-family: "Roboto", sans-serif;
 }

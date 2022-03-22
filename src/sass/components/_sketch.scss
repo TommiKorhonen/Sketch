@@ -6,47 +6,19 @@
   justify-content: center;
   align-items: center;
   height: 100vh;
+  // max-width: 1400px;
+  // margin-left: auto;
+  // margin-right: auto;
 }
 .sketch-container {
-  display: -ms-grid;
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-}
-.sketch-taskbarContainer {
   display: flex;
+  gap: 2rem;
+  justify-content: space-between;
 }
-.sketch-taskbar {
-  background-color: #202020;
-  align-self: center;
+.sketch-boardWrapper {
   display: flex;
-  gap: 1rem;
-  padding: 1.8rem;
-  justify-content: space-around;
-  flex-direction: column;
-  width: 300px;
-  height: 100%;
-}
-.sketch-form {
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-}
-.sketch-inputs {
-  color: colors.$base-color;
-  font-weight: 600;
-  display: flex;
+  justify-content: center;
   align-items: center;
-  gap: 1rem;
-}
-
-.sketch-buttons {
-  color: colors.$base-color;
-  gap: 0.5rem;
-  display: flex;
-  flex-direction: column;
-}
-.sketch-sliderContainer {
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
+  width: 600px;
+  height: 600px;
 }

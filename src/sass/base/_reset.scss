@@ -4,10 +4,17 @@
   padding: 0;
   box-sizing: border-box;
 }
+// .App {
+//   background-color: #181818;
+// }
 button {
   border: 1px solid colors.$base-color;
   cursor: pointer;
   padding: 0.5rem 1rem;
   color: colors.$base-color;
   background-color: rgb(0, 0, 0, 10%);
+}
+.buttonToggled {
+  background-color: colors.$base-color;
+  color: black;
 }
