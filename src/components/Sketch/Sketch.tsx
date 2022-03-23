@@ -46,11 +46,14 @@ const Sketch = () => {
     col: number
   ) => {
     e.preventDefault();
+    if (buttonToggled.colorGrab) {
+      return handleColorGrab(row, col);
+    }
     const newGrid = handleColoring(board.grid, row, col);
-    setBoard({ grid: newGrid, mouseIsPressed: true });
     if (buttonToggled.eraser) {
       erase(row, col);
     }
+    setBoard({ grid: newGrid, mouseIsPressed: true });
   };
 
   const handleMouseEnter = (row: number, col: number) => {
@@ -114,6 +117,20 @@ const Sketch = () => {
     };
     newGrid[row][col] = newNode;
     return newGrid;
+  };
+  const handleColorGrab = (row: number, col: number) => {
+    const newGrid = [...board.grid];
+    const node = newGrid[row][col];
+    // Takes bg color if node color is false
+    if (!node.isColored) {
+      setColor(bgColor);
+    } else {
+      setColor(node.nodeColor);
+    }
+    setButtonToggled({
+      ...buttonToggled,
+      colorGrab: false,
+    });
   };
 
   const resetGrid = () => {
