@@ -1,4 +1,4 @@
-import { render, screen, RenderOptions } from "@testing-library/react";
+import { render, screen } from "@testing-library/react";
 import Square from "../Square";
 
 const squareProps = {

@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { IInputValues } from "../Board/Board";
 import { IButtonToggle } from "../Taskbar/Taskbar";
 
 interface ISquareProps {

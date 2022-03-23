@@ -1,6 +1,7 @@
 import React from "react";
-import { IGrid } from "../Sketch/Sketch";
 import Square from "../Square/Square";
+// interfaces
+import { IGrid } from "../Sketch/Sketch";
 import { IButtonToggle } from "../Taskbar/Taskbar";
 
 interface IBoardProps {
@@ -36,6 +37,7 @@ const Board: React.FC<IBoardProps> = ({
         return (
           <div
             key={rowindex}
+            data-testid="board"
             className="row"
             draggable={false}
             style={{
