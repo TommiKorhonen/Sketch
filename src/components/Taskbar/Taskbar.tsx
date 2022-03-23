@@ -4,6 +4,7 @@ import { IInputValues } from "../Board/Board";
 import { INode } from "../Sketch/Sketch";
 
 interface ITaskbarProps {
+  resetGrid: () => void;
   values: IInputValues;
   handleChange: (e: { target: { name: string; value: any } }) => any;
   color: string;
@@ -11,10 +12,26 @@ interface ITaskbarProps {
   setColor: React.Dispatch<React.SetStateAction<string>>;
   setbgColor: React.Dispatch<React.SetStateAction<string>>;
   buttonToggled: IButtonToggle;
-  setButtonToggled: React.Dispatch<React.SetStateAction<{ eraser: boolean }>>;
+  setButtonToggled: React.Dispatch<
+    React.SetStateAction<{
+      eraser: boolean;
+      colorFill: boolean;
+      colorGrab: boolean;
+      randomColors: boolean;
+      shader: boolean;
+      gridLines: boolean;
+      clear: boolean;
+    }>
+  >;
 }
-interface IButtonToggle {
+export interface IButtonToggle {
   eraser: boolean;
+  colorFill: boolean;
+  colorGrab: boolean;
+  randomColors: boolean;
+  shader: boolean;
+  gridLines: boolean;
+  clear: boolean;
 }
 
 const Taskbar: React.FC<ITaskbarProps> = ({
@@ -26,7 +43,49 @@ const Taskbar: React.FC<ITaskbarProps> = ({
   setbgColor,
   setButtonToggled,
   buttonToggled,
+  resetGrid,
 }) => {
+  const randomColor = () => {
+    setButtonToggled({
+      ...buttonToggled,
+      randomColors: true,
+    });
+    const arrayOfColorFunctions = [
+      "0",
+      "1",
+      "2",
+      "3",
+      "4",
+      "5",
+      "6",
+      "7",
+      "8",
+      "9",
+      "a",
+      "b",
+      "c",
+      "d",
+      "e",
+      "f",
+    ];
+
+    let randomColorString = "#";
+    for (let x = 0; x < 6; x++) {
+      let index = Math.floor(Math.random() * 16);
+      let value = arrayOfColorFunctions[index];
+
+      randomColorString += value;
+    }
+    setColor(randomColorString);
+
+    setTimeout(() => {
+      setButtonToggled({
+        ...buttonToggled,
+        randomColors: false,
+      });
+    }, 1000);
+  };
+
   return (
     <section className="taskbar-Container">
       <div className="taskbar">
@@ -47,16 +106,64 @@ const Taskbar: React.FC<ITaskbarProps> = ({
           </div>
         </form>
         <div className="taskbar-Buttons">
-          <button>Color Fill</button>
-          <button>Color Grab</button>
+          <div
+            style={{ display: "flex", justifyContent: "center", gap: "1rem" }}
+          >
+            <button
+              className={buttonToggled.colorFill ? "buttonToggled" : ""}
+              onClick={() =>
+                buttonToggled.colorGrab
+                  ? ""
+                  : setButtonToggled({
+                      ...buttonToggled,
+                      colorFill: !buttonToggled.colorFill,
+                    })
+              }
+            >
+              Color Fill
+            </button>
+            <button
+              className={buttonToggled.colorGrab ? "buttonToggled" : ""}
+              onClick={() =>
+                buttonToggled.colorFill
+                  ? ""
+                  : setButtonToggled({
+                      ...buttonToggled,
+                      colorGrab: !buttonToggled.colorGrab,
+                    })
+              }
+            >
+              Color Grab
+            </button>
+          </div>
           <button
             className={buttonToggled.eraser ? "buttonToggled" : ""}
-            onClick={() => setButtonToggled({ eraser: !buttonToggled.eraser })}
+            onClick={() =>
+              setButtonToggled({
+                ...buttonToggled,
+                eraser: !buttonToggled.eraser,
+              })
+            }
           >
             Eraser
           </button>
-          <button>Random colors</button>
-          <button>Shader</button>
+          <button
+            className={buttonToggled.randomColors ? "buttonToggled" : ""}
+            onClick={() => randomColor()}
+          >
+            Random color
+          </button>
+          <button
+            className={buttonToggled.shader ? "buttonToggled" : ""}
+            onClick={() =>
+              setButtonToggled({
+                ...buttonToggled,
+                shader: !buttonToggled.shader,
+              })
+            }
+          >
+            Shader
+          </button>
         </div>
         <div className="taskbar-SliderContainer">
           <label htmlFor="gridLines">
@@ -72,9 +179,24 @@ const Taskbar: React.FC<ITaskbarProps> = ({
             min={1}
             max={24}
           />
-          <button>Toggle Grid Lines</button>
+          <button
+            className={buttonToggled.gridLines ? "buttonToggled" : ""}
+            onClick={() =>
+              setButtonToggled({
+                ...buttonToggled,
+                gridLines: !buttonToggled.gridLines,
+              })
+            }
+          >
+            Toggle Grid Lines
+          </button>
         </div>
-        <button>Clear</button>
+        <button
+          className={buttonToggled.clear ? "buttonToggled" : ""}
+          onClick={() => resetGrid()}
+        >
+          Clear
+        </button>
       </div>
     </section>
   );

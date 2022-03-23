@@ -1,14 +1,20 @@
 import React, { useState } from "react";
 import { IInputValues } from "../Board/Board";
+import { IButtonToggle } from "../Taskbar/Taskbar";
 
 interface ISquareProps {
-  handleMouseDown: (row: number, col: number) => void;
+  handleMouseDown: (
+    e: { preventDefault: () => void },
+    row: number,
+    col: number
+  ) => void;
   handleMouseEnter: (row: number, col: number) => void;
   handleMouseUp: () => void;
   isColored: boolean;
   col: number;
   row: number;
   nodeColor: string;
+  buttonToggled: IButtonToggle;
 }
 // style={{ backgroundColor: nodeColor }}
 const Square: React.FC<ISquareProps> = ({
@@ -19,19 +25,22 @@ const Square: React.FC<ISquareProps> = ({
   row,
   isColored,
   nodeColor,
+  buttonToggled,
 }) => {
+  const extraClass = buttonToggled.gridLines ? "" : "noGridLines";
   return (
     <article
       draggable={false}
-      className={`node `}
+      className={`node ${extraClass}`}
       style={
         isColored
           ? { backgroundColor: nodeColor }
           : { backgroundColor: "inherit" }
       }
-      onMouseDown={() => handleMouseDown(row, col)}
+      onMouseDown={(e) => handleMouseDown(e, row, col)}
       onMouseEnter={() => handleMouseEnter(row, col)}
       onMouseUp={() => handleMouseUp()}
+      onContextMenu={(e) => e.preventDefault()}
     ></article>
   );
 };

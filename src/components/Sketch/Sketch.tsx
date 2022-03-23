@@ -15,9 +15,15 @@ export interface INode {
 const Sketch = () => {
   const [buttonToggled, setButtonToggled] = useState({
     eraser: false,
+    colorFill: false,
+    colorGrab: false,
+    randomColors: false,
+    shader: false,
+    gridLines: true,
+    clear: false,
   });
-  // const [eraserToggled, setEraserToggled] = useState(false);
-  const [color, setColor] = useState("#aabbcc");
+
+  const [color, setColor] = useState("#000000");
   const [bgColor, setbgColor] = useState("#FFFFFF");
   const [board, setBoard] = useState<IGrid>({
     grid: [],
@@ -34,10 +40,14 @@ const Sketch = () => {
     });
   };
 
-  const handleMouseDown = (row: number, col: number) => {
+  const handleMouseDown = (
+    e: { preventDefault: () => void },
+    row: number,
+    col: number
+  ) => {
+    e.preventDefault();
     const newGrid = handleColoring(board.grid, row, col);
     setBoard({ grid: newGrid, mouseIsPressed: true });
-    // ADD IF CONDITION SOMEWHERE
     if (buttonToggled.eraser) {
       erase(row, col);
     }
@@ -106,6 +116,20 @@ const Sketch = () => {
     return newGrid;
   };
 
+  const resetGrid = () => {
+    squareGenerator(values.gridLines);
+    setButtonToggled({
+      ...buttonToggled,
+      clear: !buttonToggled.clear,
+    });
+    setTimeout(() => {
+      setButtonToggled({
+        ...buttonToggled,
+        clear: false,
+      });
+    }, 1200);
+  };
+
   useEffect(() => {
     handleGridChange();
   }, [values.gridLines]);
@@ -122,6 +146,7 @@ const Sketch = () => {
           setbgColor={setbgColor}
           buttonToggled={buttonToggled}
           setButtonToggled={setButtonToggled}
+          resetGrid={resetGrid}
         />
         <section className="sketch-boardWrapper" draggable={false}>
           <Board
@@ -131,6 +156,7 @@ const Sketch = () => {
             board={board}
             values={values}
             bgColor={bgColor}
+            buttonToggled={buttonToggled}
           />
         </section>
       </div>

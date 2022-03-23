@@ -1,14 +1,20 @@
 import React from "react";
 import { IGrid } from "../Sketch/Sketch";
 import Square from "../Square/Square";
+import { IButtonToggle } from "../Taskbar/Taskbar";
 
 interface IBoardProps {
   board: IGrid;
-  handleMouseDown: (row: number, col: number) => void;
+  handleMouseDown: (
+    e: { preventDefault: () => void },
+    row: number,
+    col: number
+  ) => void;
   handleMouseEnter: (row: number, col: number) => void;
   handleMouseUp: () => void;
   bgColor?: string;
   values: IInputValues;
+  buttonToggled: IButtonToggle;
 }
 
 export interface IInputValues {
@@ -22,6 +28,7 @@ const Board: React.FC<IBoardProps> = ({
   handleMouseUp,
   bgColor,
   values,
+  buttonToggled,
 }) => {
   return (
     <div draggable={false}>
@@ -48,6 +55,7 @@ const Board: React.FC<IBoardProps> = ({
                   row={row}
                   col={col}
                   nodeColor={nodeColor}
+                  buttonToggled={buttonToggled}
                 />
               );
             })}
