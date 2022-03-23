@@ -2,9 +2,12 @@
   display: flex;
   // justify-content: center;
   // align-items: center;
-  border: 1px solid rgb(156, 156, 156);
+
   width: 24px;
   height: 24px;
+}
+.nodeGridLines {
+  border: 1px solid rgb(156, 156, 156);
 }
 .noGridLines {
   border: none;

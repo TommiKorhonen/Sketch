@@ -27,7 +27,7 @@ const Square: React.FC<ISquareProps> = ({
   nodeColor,
   buttonToggled,
 }) => {
-  const extraClass = buttonToggled.gridLines ? "" : "noGridLines";
+  const extraClass = buttonToggled.gridLines ? "nodeGridLines" : "noGridLines";
   return (
     <article
       draggable={false}
