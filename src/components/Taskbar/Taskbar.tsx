@@ -1,7 +1,6 @@
 import React from "react";
 import { HexColorPicker } from "react-colorful";
 import { IInputValues } from "../Board/Board";
-import { INode } from "../Sketch/Sketch";
 
 interface ITaskbarProps {
   resetGrid: () => void;
@@ -93,7 +92,11 @@ const Taskbar: React.FC<ITaskbarProps> = ({
           <div className="taskbar-Inputs">
             <h3>Pen</h3>
             <div className="small-picker custom-pointers">
-              <HexColorPicker color={color} onChange={setColor} />
+              <HexColorPicker
+                color={color}
+                onChange={setColor}
+                data-testid="penColor"
+              />
             </div>
             {/* <label htmlFor="penColor">Pen Color</label> */}
           </div>
@@ -170,6 +173,7 @@ const Taskbar: React.FC<ITaskbarProps> = ({
             {`Grid size: ${values.gridLines} x ${values.gridLines}`}
           </label>
           <input
+            data-testid="gridSlider"
             type="range"
             id="gridLines"
             title="gridLines"
