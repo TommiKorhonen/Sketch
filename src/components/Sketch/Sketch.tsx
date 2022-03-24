@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { getAllNodes } from "../../helpers/getNodes";
 import Board, { IInputValues } from "../Board/Board";
 import Taskbar from "../Taskbar/Taskbar";
 
@@ -46,12 +47,16 @@ const Sketch = () => {
     col: number
   ) => {
     e.preventDefault();
+
     if (buttonToggled.colorGrab) {
       return handleColorGrab(row, col);
     }
     const newGrid = handleColoring(board.grid, row, col);
     if (buttonToggled.eraser) {
       erase(row, col);
+    }
+    if (buttonToggled.colorFill) {
+      colorFill();
     }
     setBoard({ grid: newGrid, mouseIsPressed: true });
   };
@@ -145,6 +150,12 @@ const Sketch = () => {
         clear: false,
       });
     }, 1200);
+  };
+  const colorFill = () => {
+    const nodes = getAllNodes(board.grid);
+    const items = nodes.forEach((el) =>
+      el.isColored ? "" : ((el.isColored = true), (el.nodeColor = color))
+    );
   };
 
   useEffect(() => {
