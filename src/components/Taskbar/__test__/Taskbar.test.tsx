@@ -17,7 +17,6 @@ const taskbarProps = {
     colorFill: true,
     colorGrab: true,
     randomColors: true,
-    shader: true,
     gridLines: true,
     clear: true,
   },
@@ -36,9 +35,6 @@ const showToggledValue = () => {
   const randomColorsBtn = screen.getByRole("button", {
     name: /Random color/i,
   });
-  const shaderBtn = screen.getByRole("button", {
-    name: /shader/i,
-  });
   const gridLinesBtn = screen.getByRole("button", {
     name: /toggle grid lines/i,
   });
@@ -50,7 +46,6 @@ const showToggledValue = () => {
     colorFillBtn,
     colorGrabBtn,
     randomColorsBtn,
-    shaderBtn,
     gridLinesBtn,
     clearBtn,
   };
@@ -84,11 +79,6 @@ describe("Taskbar", () => {
       render(<Taskbar {...taskbarProps} />);
       const { randomColorsBtn } = showToggledValue();
       expect(randomColorsBtn).toHaveClass("buttonToggled");
-    });
-    test("shader should show toggled color", () => {
-      render(<Taskbar {...taskbarProps} />);
-      const { shaderBtn } = showToggledValue();
-      expect(shaderBtn).toHaveClass("buttonToggled");
     });
     test("gridLines should show toggled color", () => {
       render(<Taskbar {...taskbarProps} />);

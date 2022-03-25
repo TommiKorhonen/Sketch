@@ -19,7 +19,6 @@ const Sketch = () => {
     colorFill: false,
     colorGrab: false,
     randomColors: false,
-    shader: false,
     gridLines: true,
     clear: false,
   });
@@ -151,11 +150,16 @@ const Sketch = () => {
       });
     }, 1200);
   };
+
   const colorFill = () => {
     const nodes = getAllNodes(board.grid);
     const items = nodes.forEach((el) =>
       el.isColored ? "" : ((el.isColored = true), (el.nodeColor = color))
     );
+    setButtonToggled({
+      ...buttonToggled,
+      colorFill: false,
+    });
   };
 
   useEffect(() => {

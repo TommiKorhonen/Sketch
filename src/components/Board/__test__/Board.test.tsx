@@ -33,7 +33,6 @@ const boardProps = {
     colorFill: false,
     colorGrab: false,
     randomColors: false,
-    shader: false,
     gridLines: true,
     clear: false,
   },

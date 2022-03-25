@@ -17,7 +17,7 @@ interface ITaskbarProps {
       colorFill: boolean;
       colorGrab: boolean;
       randomColors: boolean;
-      shader: boolean;
+
       gridLines: boolean;
       clear: boolean;
     }>
@@ -28,7 +28,7 @@ export interface IButtonToggle {
   colorFill: boolean;
   colorGrab: boolean;
   randomColors: boolean;
-  shader: boolean;
+
   gridLines: boolean;
   clear: boolean;
 }
@@ -155,17 +155,6 @@ const Taskbar: React.FC<ITaskbarProps> = ({
             onClick={() => randomColor()}
           >
             Random color
-          </button>
-          <button
-            className={buttonToggled.shader ? "buttonToggled" : ""}
-            onClick={() =>
-              setButtonToggled({
-                ...buttonToggled,
-                shader: !buttonToggled.shader,
-              })
-            }
-          >
-            Shader
           </button>
         </div>
         <div className="taskbar-SliderContainer">

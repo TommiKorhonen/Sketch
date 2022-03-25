@@ -32,7 +32,7 @@ const Board: React.FC<IBoardProps> = ({
   buttonToggled,
 }) => {
   return (
-    <div draggable={false}>
+    <div draggable={false} onMouseLeave={() => handleMouseUp()}>
       {board.grid.map((row, rowindex) => {
         return (
           <div
